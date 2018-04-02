@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  classpath:org/springframework/beans/factory/xml/spring-beans-3.0.xsd 
+  http://www.springframework.org/schema/context 
+  classpath:org/springframework/context/config/spring-context-3.0.xsd  
+  http://www.springframework.org/schema/mvc  
+  classpath:org/springframework/web/servlet/config/spring-mvc-3.0.xsd  
+  http://www.springframework.org/schema/aop   
+  classpath:org/springframework/aop/config/spring-aop-3.0.xsd  
+  http://www.springframework.org/schema/task 
+	classpath:org/springframework/scheduling/config/spring-task-3.0.xsd">
+
+	<!-- spring配置 -->
+	<context:component-scan base-package="com.bracelet.socket" />
+	<context:component-scan base-package="com.bracelet.controller" />
+	<context:component-scan base-package="com.bracelet.service" />
+	<context:component-scan base-package="com.bracelet.aop" />
+
+	<!-- 数据库配置文件 -->
+	<context:property-placeholder location="classpath:db.properties" />
+
+	<!-- dbcp方式配置数据源 -->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${database.driver}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+		<property name="maxIdle" value="${database.maxIdle}" />
+		<property name="maxWait" value="${database.maxWait}"></property>
+		<property name="maxActive" value="${database.maxActive}"></property>
+		<property name="defaultAutoCommit" value="true"></property>
+	</bean> -->
+	
+		<!-- 数据库基本信息配置 -->
+	<bean id="parentDataSource" class="com.alibaba.druid.pool.DruidDataSource"  abstract="true">
+		<property name="driverClassName" value="${mysql.driverClassName}" />
+		<property name="filters" value="${mysql.filters}" />
+		<property name="maxActive" value="${mysql.maxActive}" />
+		<property name="initialSize" value="${mysql.initialSize}" />
+		<property name="maxWait" value="${mysql.maxWait}" />
+		<property name="minIdle" value="${mysql.minIdle}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${mysql.timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis" value="${mysql.minEvictableIdleTimeMillis}" />
+		<property name="validationQuery" value="${mysql.validationQuery}" />
+		<property name="testWhileIdle" value="${mysql.testWhileIdle}" />
+		<property name="testOnBorrow" value="${mysql.testOnBorrow}" />
+		<property name="testOnReturn" value="${mysql.testOnReturn}" />
+		<property name="maxOpenPreparedStatements" value="${mysql.maxOpenPreparedStatements}" />
+		<property name="removeAbandoned" value="${mysql.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${mysql.removeAbandonedTimeout}" />
+		<property name="logAbandoned" value="${mysql.logAbandoned}" />
+		<property name="poolPreparedStatements" value="false" />
+	</bean>
+	<!-- 主数据库 -->
+	<bean id="dataSource" parent="parentDataSource">
+		<property name="url" value="${mysql.url}" />
+		<property name="username" value="${mysql.username}" />
+		<property name="password" value="${mysql.password}" />
+	</bean>
+
+	<!-- 配置jdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>	
+</beans>

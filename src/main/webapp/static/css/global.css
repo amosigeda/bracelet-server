@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Reset styles for this website
+   ========================================================================== */
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-style: normal;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+html {
+    background: #fff;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    font-size: .625rem;
+}
+body,html {
+    height: 100%;
+    min-height: 100%;
+    background: #fff;
+    background-size: 100% auto;
+}
+body {
+    font-family: PingFangSC-Regular, sans-serif, "microsoft yahei", tahoma, Helvetica;
+    font-size: 12px;
+    line-height: 190%;
+    color: white;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/* Layout */
+.fl         { float: left; }
+.fr         { float: right; }
+.pl10       { padding-left: 10px; }
+.oh         { overflow: hidden; }
+.show       { display: block; }
+.hide       { display: none; }
+.full-width { width: 100%; }
+
+/* Font */
+.center     { text-align: center; }
+.white      { color: white; }
+.black      { color: black; }
+.gray       { color: #898989; }
+.green      { color: #0a4146; }
+.blue       { color: #6a7da7; }
+.orange     { color: #ed6d34; }
+.fs14       { font-size: 14px; }
+.fs16       { font-size: 16px; }
+.fs18       { font-size: 18px; }
+.fs24       { font-size: 24px; }
+.fs30       { font-size: 30px; }
+
+/* ==========================================================================
+   Pages styles
+   ========================================================================== */
+
+/* Warn Styles */
+.warn-body{
+    background: url("../images/warn-bg.png") repeat-x 0 0;
+    background-size: auto 100%;
+    text-align: center;
+}
+.warn-icon{
+    margin-top: 122px;
+    margin-bottom: 50px;
+    width: 90px;
+    height: 90px;
+}
+.warn-tips{
+    margin-top: 18px;
+}
+
+/* Card Styles */
+.card-body{
+    background: url("../images/card-bg.png") repeat-x 0 0;
+    background-size: auto 100%;
+    overflow-y: scroll;
+}
+.cards{
+    padding: 20px 14px 60px;
+}
+.card{
+    position: relative;
+    overflow: hidden;
+    height: 140px;
+    margin-bottom: 20px;
+    background-color: rgba(255,255,255,0.06);
+    border-radius: 10px;
+}
+.card-info{
+    padding: 15px 0 0 24px;
+}
+.card-title{
+    margin-bottom: 25px;
+}
+.card-unit{
+    margin: 0 5px 0 5px;
+}
+.card-time{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+.card-img{
+    position: absolute;
+    right: 14px;
+    bottom: 0;
+    width: auto;
+    height: 140px;
+}
+.site-info{
+    font-size: 10px;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+}
